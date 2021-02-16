@@ -176,15 +176,15 @@ a:hover {
 }
 
 a.remove:hover {
-    background-color: rgb(240, 84, 63);
-    border-bottom: 1px solid rgb(240, 84, 63);
+    background-color: rgb(211, 70, 52);
+    border-bottom: 1px solid rgb(211, 70, 52);
     color: white;
     cursor: pointer;
 }
 
 a.add:hover {
-    background-color: rgb(65, 131, 76);
-    border-bottom: 1px solid rgb(65, 131, 76);
+    background-color: rgb(78, 155, 91);
+    border-bottom: 1px solid rgb(78, 155, 91);
     color: white;
     cursor: pointer;
 }
