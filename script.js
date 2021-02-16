@@ -1,3 +1,7 @@
+// DOM VARIABLES
+let 
+
+
 let library = [];
 
 function Book() {

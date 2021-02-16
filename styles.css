@@ -45,7 +45,7 @@ nav {
 
 img {
     width: 100px;
-    /* height: auto; */
+    height:fit-content;
 }
 
 .body-margin {
@@ -64,12 +64,16 @@ nav.book-item {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: center;
     /* justify-content: space-around; */
 }
 
 .book-item {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .book-item:hover {
@@ -99,28 +103,12 @@ nav.book-item {
 .item-buttons {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
+    margin-left: 20px;
 }
 
 .title-container {
     width: 60%;
 }
-
-
-/* button {
-    font-family: 'Newsreader', serif;
-    font-weight: 200;
-    border-style: none;
-    border-color: none;
-    background-color: white;
-    border-bottom: 1px solid black;
-    padding: 0 0;
-    margin: 0 0;
-}
-
-button:hover {
-    border-bottom: 4px solid rgb(255, 174, 98); 
-} */
 
 h1 {
     font-family: 'Newsreader', serif;
@@ -147,7 +135,7 @@ h3 {
 }
 
 .book-title {
-    border-bottom: 1px solid #0000003d;
+    border-bottom: 1px solid #00000025;
     line-height: 2em;
 }
 
@@ -196,8 +184,8 @@ a.remove:hover {
 }
 
 a.add:hover {
-    background-color: rgb(94, 192, 111);
-    border-bottom: 1px solid rgb(94, 192, 111);
+    background-color: rgb(65, 131, 76);
+    border-bottom: 1px solid rgb(65, 131, 76);
     color: white;
     cursor: pointer;
 }
