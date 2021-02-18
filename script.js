@@ -1,24 +1,52 @@
 // DOM VARIABLES
-let 
+let addBook = document.querySelector(".add");
+let removeAllBooks = document.querySelector(".remove-all");
+
+let confirmRemovalForm = document.querySelector(".remove-book-confirmation");
+let cancelRemoval = document.querySelector(".cancel-remove-all");
+
+let newBookForm = document.querySelector(".add-book-form");
+let titleForm = document.querySelector(".title-form");
+let authorForm = document.querySelector(".author-form");
+let imageURLForm = document.querySelector(".image-url-form");
+let submitButton = document.querySelector(".submit");
+
+let filterAll = document.querySelector(".filter-all");
+let filterRead = document.querySelector(".filter-read");
+let filterUnread = document.querySelector(".filter-unread");
+
+let toggleRead = document.querySelectorAll(".toggle-read");
+let toggleUnread = document.querySelectorAll(".toggle-unread");
+let removeBook = document.querySelectorAll(".remove-book");
+
+// EVENT LISTENERS
+addBook.addEventListener("click", formActive);
+removeAllBooks.addEventListener("click", confirmRemovalToggle);
+cancelRemoval.addEventListener("click", confirmRemovalToggle);
+
+submitButton.addEventListener("click", );
+
+filterAll.addEventListener("click", );
+filterRead.addEventListener("click", );
+filterUnread.addEventListener("click", );
 
 
-let library = [];
+toggleRead.addEventListener("click", );
+toggleUnread.addEventListener("click", );
+removeBook.addEventListener("click", );
 
-function Book() {
-    // the constructor...loops through the array to display each book on the page
+// FUNCTIONS
+
+function formActive() {
+    newBookForm.classList.toggle('show');
+    confirmRemovalForm.classList.remove('show');
+
 }
 
-function addBookToLibrary() {
-    // do stuff here...
+function confirmRemovalToggle() {
+    confirmRemovalForm.classList.toggle('show');
+
 }
-
-
-
-
-
-
-
-
 
 // 1. Write a function that loops through the array and displays each book on the page. 
 // You can display them in some sort of table, or each on their own “card”. 
@@ -33,3 +61,13 @@ function addBookToLibrary() {
 
 // 4. Add a button on each book’s display to change its read status.
 // 4a. To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
+
+let library = [];
+
+function Book() {
+    // the constructor...loops through the array to display each book on the page
+}
+
+function addBookToList() {
+    // do stuff here...
+}

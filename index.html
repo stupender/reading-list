@@ -23,13 +23,38 @@
 
         <nav class="body-margin">
             <a class="add">+ ADD A BOOK</a>
+            <a class="remove-all">REMOVE ALL BOOKS</a>
             <div class="filter-container">
                 <p>FILTER BY:</p>
-                <a class="all left-spacer">ALL</a>
-                <a class="read left-spacer">READ</a>
-                <a class="unread left-spacer">UNREAD</a>    
+                <a class="filter-all left-spacer">ALL</a>
+                <a class="filter-read left-spacer">READ</a>
+                <a class="filter-unread left-spacer">UNREAD</a>    
             </div>
         </nav>
+
+        <div class="remove-book-confirmation">
+            <p class="confirm-item">Are you sure you want to remove all books from the list?</p>
+            <div class="confirm-buttons">
+                <a class="confirm-remove-all confirm-item">YES, REMOVE ALL</a>
+                <a class="cancel-remove-all confirm-item">CANCEL REQUEST</a>    
+            </div>
+        </div>
+
+        <div class="add-book-form">
+            <div class="form-item">
+                <p>Book Title:</p>
+                <input type="text" class="title-form">
+            </div>
+            <div class="form-item">
+                <p>Author:</p>
+                <input type="text" class="author-form">
+            </div>
+            <div class="form-item">
+                <p>Image URL:</p>
+                <input type="text" class="image-url-form">
+            </div>
+            <a class="submit form-item">ADD BOOK</a>
+        </div>
 
         <div class="books-container body-margin">
 
@@ -41,9 +66,9 @@
                         <h3 class="author">John Luther Adams</h3>    
                     </div>
                     <div class="item-buttons">
-                        <a class="read-toggle-read">Read</a>
-                        <a class="read-toggle-unread ">Unread</a>
-                        <a class="remove">Remove From List</a>        
+                        <a class="toggle-read">Read</a>
+                        <a class="toggle-unread ">Unread</a>
+                        <a class="remove-book">Remove From List</a>        
                     </div>
                 </div>
             </div>
@@ -56,9 +81,9 @@
                         <h3 class="author">Haruki Murakami</h3>    
                     </div>
                     <div class="item-buttons">
-                        <a class="read-toggle-read">Read</a>
-                        <a class="read-toggle-unread ">Unread</a>
-                        <a class="remove">Remove From List</a>        
+                        <a class="toggle-read">Read</a>
+                        <a class="toggle-unread ">Unread</a>
+                        <a class="remove-book">Remove From List</a>        
                     </div>
                 </div>
             </div>
@@ -71,9 +96,9 @@
                         <h3 class="author">Richard Powers</h3>    
                     </div>
                     <div class="item-buttons">
-                        <a class="read-toggle-read">Read</a>
-                        <a class="read-toggle-unread ">Unread</a>
-                        <a class="remove">Remove From List</a>        
+                        <a class="toggle-read">Read</a>
+                        <a class="toggle-unread ">Unread</a>
+                        <a class="remove-book">Remove From List</a>        
                     </div>
                 </div>
             </div>
@@ -86,14 +111,14 @@
                         <h3 class="author">Matthew Walker</h3>    
                     </div>
                     <div class="item-buttons">
-                        <a class="read-toggle-read">Read</a>
-                        <a class="read-toggle-unread">Unread</a>
-                        <a class="remove">Remove From List</a>        
+                        <a class="toggle-read">Read</a>
+                        <a class="toggle-unread ">Unread</a>
+                        <a class="remove-book">Remove From List</a>        
                     </div>
                 </div>
             </div>
 
-            <div class="book-item vertical-padding border-box">
+            <!-- <div class="book-item vertical-padding border-box">
                 <img src="https://images-na.ssl-images-amazon.com/images/I/91zS1MndmqL.jpg">
                 <div class="item-text-container">
                     <div class="title-container">
@@ -101,12 +126,12 @@
                         <h3 class="author">John Daido Loori</h3>    
                     </div>
                     <div class="item-buttons">
-                        <a class="read-toggle-read">Read</a>
-                        <a class="read-toggle-unread ">Unread</a>
-                        <a class="remove">Remove From List</a>        
+                        <a class="toggle-read">Read</a>
+                        <a class="toggle-unread ">Unread</a>
+                        <a class="remove-book">Remove From List</a>        
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
         <div>
