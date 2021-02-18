@@ -19,34 +19,52 @@ let toggleRead = document.querySelectorAll(".toggle-read");
 let toggleUnread = document.querySelectorAll(".toggle-unread");
 let removeBook = document.querySelectorAll(".remove-book");
 
+
+
 // EVENT LISTENERS
 addBook.addEventListener("click", formActive);
 removeAllBooks.addEventListener("click", confirmRemovalToggle);
 cancelRemoval.addEventListener("click", confirmRemovalToggle);
 
-submitButton.addEventListener("click", );
+// submitButton.addEventListener("click", );
+// filterAll.addEventListener("click", );
+// filterRead.addEventListener("click", );
+// filterUnread.addEventListener("click", );
 
-filterAll.addEventListener("click", );
-filterRead.addEventListener("click", );
-filterUnread.addEventListener("click", );
+toggleRead.addEventListener("click", toggleReadClass);
+toggleUnread.addEventListener("click", toggleUnreadClass);
+removeBook.addEventListener("click", hideBook);
 
 
-toggleRead.addEventListener("click", );
-toggleUnread.addEventListener("click", );
-removeBook.addEventListener("click", );
 
 // FUNCTIONS
-
 function formActive() {
-    newBookForm.classList.toggle('show');
-    confirmRemovalForm.classList.remove('show');
-
+    newBookForm.classList.toggle("show");
+    // confirmRemovalForm.classList.remove("show")
+    // removeAllBooks.classList.remove("red-box")
+    addBook.classList.toggle("green-box")
 }
 
 function confirmRemovalToggle() {
-    confirmRemovalForm.classList.toggle('show');
-
+    confirmRemovalForm.classList.toggle("show");
+    removeAllBooks.classList.toggle("red-box");
 }
+
+function toggleReadClass() {
+    // this.classList.toggle("read-active");
+    console.log("test!");
+}
+function toggleUnreadClass() {
+    // this.classList.toggle("unread-active");
+    console.log("test!");
+}
+
+function hideBook() {
+    // this.prototype.classList.toggle("hide");
+    console.log("test!");
+}
+
+
 
 // 1. Write a function that loops through the array and displays each book on the page. 
 // You can display them in some sort of table, or each on their own “card”. 

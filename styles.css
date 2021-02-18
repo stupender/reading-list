@@ -68,11 +68,14 @@ nav.book-item {
 }
 
 .book-item {
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
 
+.default {
+    display: flex;
 }
 
 .book-item:hover {
@@ -145,6 +148,11 @@ nav.book-item {
 
 input {
     width: 100%;
+    font-family: 'Newsreader', serif;
+    border-radius: 0;
+    border: 1px solid #0000003d;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .submit {
@@ -272,7 +280,31 @@ a.add:hover {
     cursor: pointer;
 }
 
-a.active {
+.green-box {
+    background-color: rgb(78, 155, 91);
+    border-bottom: 1px solid rgb(78, 155, 91);
+    color: white;
+    cursor: pointer;
+}
+
+.red-box {
+    background-color: rgb(211, 70, 52);
+    border-bottom: 1px solid rgb(211, 70, 52);
+    color: white;
+    cursor: pointer;
+}
+
+.read-active {
+    background-color: black;
+    color: white;
+}
+
+.unread-active {
+    background-color: black;
+    color: white;
+}
+
+.unread-active {
     background-color: black;
     color: white;
 }
@@ -280,4 +312,8 @@ a.active {
 .border-box {
     border-top: 1px solid #0000003d;
     /* border-radius: 5px; */
+}
+
+.hide {
+    display: none;
 }
