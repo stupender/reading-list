@@ -93,10 +93,12 @@ nav.book-item {
     margin-right: 15%;
     margin-top: 20px;
     margin-bottom: 40px;
+    background-color: rgba(211, 70, 52, 0.13);
 }
 
 .confirm-buttons {
     padding-top: 20px;
+    padding-bottom: 5px;
 }
 
 .confirm-remove-all {
