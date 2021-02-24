@@ -140,6 +140,39 @@ nav.book-item {
 
 }
 
+.submit-incomplete {
+    color:rgb(211, 70, 52);
+    font-style: italic;
+    text-align: center;
+    padding-bottom: 20px;
+
+}
+
+.submit-incomplete-box {
+    display: none;
+}
+
+.show-submit-incomplete-box {
+    display: inline;
+}
+
+.pages-incomplete {
+    color:rgb(211, 70, 52);
+    font-style: italic;
+    text-align: center;
+    padding-bottom: 20px;
+
+}
+
+.pages-incomplete-box {
+    display: none;
+}
+
+.show-pages-incomplete-box {
+    display: inline;
+}
+
+
 .add-confirmation {
     display: none;
 }
