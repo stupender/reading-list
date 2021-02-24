@@ -132,6 +132,22 @@ nav.book-item {
     margin-bottom: 20px;
 }
 
+.added-text {
+    text-align: center;
+    color: rgb(78, 155, 91);
+    font-style: italic;
+    padding-bottom: 20px;
+
+}
+
+.add-confirmation {
+    display: none;
+}
+
+.show-confirmation {
+    display: inline;
+}
+
 .show {
     display: flex;
 }
@@ -193,6 +209,7 @@ input {
     width: 60%;
 }
 
+
 h1 {
     font-family: 'Newsreader', serif;
     font-weight: 600;
@@ -230,6 +247,7 @@ p {
     margin: 0 0;
     line-height: 1.5em;
 }
+
 
 .center {
     text-align: center;

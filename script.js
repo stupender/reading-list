@@ -1,4 +1,4 @@
-// DOM VARIABLES
+// DOM Variables
 let addBook = document.querySelector(".add");
 let removeAllBooks = document.querySelector(".remove-all");
 
@@ -8,37 +8,31 @@ let cancelRemoval = document.querySelector(".cancel-remove-all");
 let newBookForm = document.querySelector(".add-book-form");
 let titleForm = document.querySelector(".title-form");
 let authorForm = document.querySelector(".author-form");
+let pagesForm = document.querySelector(".pages-form");;
 let imageURLForm = document.querySelector(".image-url-form");
 let submitButton = document.querySelector(".submit");
 
-let filterAll = document.querySelector(".filter-all");
-let filterRead = document.querySelector(".filter-read");
-let filterUnread = document.querySelector(".filter-unread");
+let addConfirmation = document.querySelector(".add-confirmation");
+// let filterAll = document.querySelector(".filter-all");
+// let filterRead = document.querySelector(".filter-read");
+// let filterUnread = document.querySelector(".filter-unread");
 
 let toggleRead = document.querySelectorAll(".toggle-read");
 let toggleUnread = document.querySelectorAll(".toggle-unread");
 let removeBook = document.querySelectorAll(".remove-book");
 
+let bookList = document.querySelectorAll(".book-item");
 
-
-// EVENT LISTENERS
+// Event Listeners
 addBook.addEventListener("click", formActive);
 removeAllBooks.addEventListener("click", confirmRemovalToggle);
 cancelRemoval.addEventListener("click", confirmRemovalToggle);
-
-// submitButton.addEventListener("click", );
-// filterAll.addEventListener("click", );
-// filterRead.addEventListener("click", );
-// filterUnread.addEventListener("click", );
-
-toggleRead.addEventListener("click", toggleReadClass);
-toggleUnread.addEventListener("click", toggleUnreadClass);
-removeBook.addEventListener("click", hideBook);
+submitButton.addEventListener("click", submitNewBook);
 
 
-
-// FUNCTIONS
+// DOM Functions
 function formActive() {
+    addConfirmation.classList.remove("show-confirmation");
     newBookForm.classList.toggle("show");
     // confirmRemovalForm.classList.remove("show")
     // removeAllBooks.classList.remove("red-box")
@@ -46,6 +40,7 @@ function formActive() {
 }
 
 function confirmRemovalToggle() {
+    addConfirmation.classList.remove("show-confirmation");
     confirmRemovalForm.classList.toggle("show");
     removeAllBooks.classList.toggle("red-box");
 }
@@ -66,26 +61,47 @@ function hideBook() {
 
 
 
-// 1. Write a function that loops through the array and displays each book on the page. 
-// You can display them in some sort of table, or each on their own “card”. 
-// It might help for now to manually add a few books to your array so you can see the display.
+// Array to hold all Book Objects.
+let myLibrary = [];
 
-// 2. Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: 
-// author, title, number of pages, whether it’s been read and anything else you might want.
-
-// 3. Add a button on each book’s display to remove the book from the library.
-// 3a. You will need to associate your DOM elements with the actual book objects in some way. 
-// One easy solution is giving them a data-attribute that corresponds to the index of the library array.
-
-// 4. Add a button on each book’s display to change its read status.
-// 4a. To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
-
-let library = [];
-
-function Book() {
-    // the constructor...loops through the array to display each book on the page
+// Object Constructor using ES6 Class Constructor.
+class Book {
+    constructor(title, author, pages, image, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.image = image;
+        this.read = read;
+    }
 }
 
-function addBookToList() {
-    // do stuff here...
+// Push binding with new book information to myLibrary.
+function addBookToLibrary(title, author, pages, image, read) {
+    let newBook = new Book(title, author, pages, image, read);
+    myLibrary.push(newBook);
 }
+
+// Takes text from the form, creates a new Book object, and adds it to myLibrary.
+function submitNewBook() {
+    let title = titleForm.value;
+    let author = authorForm.value;
+    let pages = pagesForm.value;
+    let image = imageURLForm.value;
+    let read = false;
+
+    if (title == "" || author == "" || pages == "" || image == "") {
+        alert("Please fill out all forms!");
+
+    } else {
+        addBookToLibrary(title, author, pages, image, read);
+        titleForm.value = "";
+        authorForm.value = "";
+        pagesForm.value = "";
+        imageURLForm.value = "";    
+
+        newBookForm.classList.toggle("show");
+        addBook.classList.toggle("green-box")
+        addConfirmation.classList.add("show-confirmation");
+    }
+}
+
