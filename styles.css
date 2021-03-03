@@ -74,7 +74,11 @@ nav.book-item {
     align-items: center;
 }
 
-.default {
+.default-hide {
+    display: none;
+}
+
+.default-show {
     display: flex;
 }
 

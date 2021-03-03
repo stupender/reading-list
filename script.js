@@ -1,6 +1,7 @@
 // DOM Variables
 let addBook = document.querySelector(".add");
 let removeAllBooks = document.querySelector(".remove-all");
+let restoreDefaultsButton = document.querySelector(".restore-defaults");
 
 let confirmRemovalForm = document.querySelector(".remove-book-confirmation");
 let cancelRemoval = document.querySelector(".cancel-remove-all");
@@ -27,6 +28,7 @@ let removeBook = document.querySelectorAll(".remove-book");
 
 let booksContainer = document.querySelector(".books-container");
 let bookItem = document.querySelectorAll(".book-item");
+let defaultItems = document.querySelectorAll(".default");
 
 // Event Listeners
 addBook.addEventListener("click", formActive);
@@ -38,6 +40,9 @@ removeAll.addEventListener("click", clearAll);
 filterAll.addEventListener("click", filterShowAll);
 filterRead.addEventListener("click", filterByRead);
 filterUnread.addEventListener("click", filterByUnread);
+restoreDefaultsButton.addEventListener("click", restoreDefaults);
+
+// removeBook.addEventListener("click", removeThisBook);
 
 // DOM Functions
 function formActive() {
@@ -76,17 +81,32 @@ function hideBook() {
 
 
 
+// function removeThisBook() {
+//     this.defaultItems.
+// }
+
+
+
 // Array to hold all Book Objects.
 let myLibrary = [];
-
-// Array to hold the default Book Objects.
-let libraryDefaults = [];
 
 // Clears all items from myLibrary. 
 function clearAll() {
     myLibrary = [];
     confirmRemovalForm.classList.toggle("show");
     removeAllBooks.classList.toggle("red-box");
+    defaultItems.forEach(item => {
+        item.classList.remove("default-show");
+        item.classList.add("default-hide");    
+    });
+}
+
+// Restore defaults.
+function restoreDefaults() {
+    defaultItems.forEach(item => {
+        item.classList.add("default-show");
+        item.classList.remove("default-hide");    
+    });
 }
 
 // Object Constructor using ES6 Class Constructor.
@@ -124,8 +144,9 @@ function submitNewBook() {
         submitIncomplete.classList.remove("show-submit-incomplete-box");
     } else {
         addBookToLibrary(title, author, pages, image, read);
-        // addDOMBookItem(title, author, pages, image, read);
+        addDOMBookItem(title, author, pages, image, read);
 
+        // CLEARS FORM FOR NEXT USE
         titleForm.value = "";
         authorForm.value = "";
         pagesForm.value = "";
@@ -140,13 +161,70 @@ function submitNewBook() {
 }
 
 // Adds the newly submitted book to the DOM.
-// function addDOMBookItem(title, author, pages, image, read) {
-//     let node = booksContainer.createElement("div").classList.add("book-item vertical-padding border-box default");
+function addDOMBookItem(title, author, pages, image, read) {
+    // BOOK CONTAINER
+    let bookDivDOM = document.createElement("div");
+    bookDivDOM.setAttribute("data-index", myLibrary.index);
+    bookDivDOM.classList.add("book-item");
+    bookDivDOM.classList.add("vertical-padding");
+    bookDivDOM.classList.add("border-box");
+    bookDivDOM.classList.add("show");
 
-// }
+    booksContainer.appendChild(bookDivDOM);
 
-// add a data-key for the index of myLibrary to each new item, so you can later reference the specifc index.
+    // LEFT SIDE IMAGE
+    let imageDOM = document.createElement("img");
+    imageDOM.src = image;
+    bookDivDOM.appendChild(imageDOM);
 
+    // RIGHT SIDE CONTAINER
+    let textDivDOM = document.createElement("div");
+    textDivDOM.classList.add("item-text-container");
+    bookDivDOM.appendChild(textDivDOM);
+
+    // TITLE AND TEXT
+    let titleDivDOM = document.createElement("div");
+    titleDivDOM.classList.add("title-container");
+    textDivDOM.appendChild(titleDivDOM);
+
+    let h2DOM = document.createElement("h2");
+    h2DOM.classList.add("book-title");
+    let titleText = document.createTextNode(title);
+    h2DOM.appendChild(titleText);
+    titleDivDOM.appendChild(h2DOM);
+
+    let h3DOM = document.createElement("h3");
+    h3DOM.classList.add("author");
+    let authorText = document.createTextNode(author);
+    h3DOM.appendChild(authorText);
+    titleDivDOM.appendChild(h3DOM);
+
+    // BUTTONS
+    let buttonDivDOM = document.createElement("div");
+    buttonDivDOM.classList.add("item-buttons");
+    textDivDOM.appendChild(buttonDivDOM);
+
+    let readButtonDOM = document.createElement("a");
+    readButtonDOM.setAttribute("data-index", myLibrary.index);
+    readButtonDOM.classList.add("toggle-read");
+    let readButtonText = document.createTextNode("Read");
+    readButtonDOM.appendChild(readButtonText);
+    buttonDivDOM.appendChild(readButtonDOM);
+
+    let unreadButtonDOM = document.createElement("a");
+    unreadButtonDOM.setAttribute("data-index", myLibrary.index);
+    unreadButtonDOM.classList.add("toggle-unread");
+    let unreadButtonText = document.createTextNode("Unread");
+    unreadButtonDOM.appendChild(unreadButtonText);
+    buttonDivDOM.appendChild(unreadButtonDOM);
+
+    let removeButtonDOM = document.createElement("a");
+    removeButtonDOM.setAttribute("data-index", myLibrary.index);
+    removeButtonDOM.classList.add("remove-book");
+    let removeButtonText = document.createTextNode("Remove From List");
+    removeButtonDOM.appendChild(removeButtonText);
+    buttonDivDOM.appendChild(removeButtonDOM);
+}
 
 // Filter visible DOM list by: all, read, unread.
 function filterShowAll() {
@@ -175,3 +253,7 @@ function filterByUnread() {
     }
 }
 
+// // DOM button functions
+// function removeThisBook() {
+
+// }
