@@ -22,12 +22,12 @@ let filterAll = document.querySelector(".filter-all");
 let filterRead = document.querySelector(".filter-read");
 let filterUnread = document.querySelector(".filter-unread");
 
-let toggleRead = document.getElementsByClassName("toggle-read");
-let toggleUnread = document.getElementsByClassName("toggle-unread");
-let removeBook = document.getElementsByClassName("remove-book");
-
 let booksContainer = document.querySelector(".books-container");
 let defaultItems = document.querySelectorAll(".default");
+
+let toggleRead = document.querySelectorAll(".toggle-read");
+let toggleUnread = document.querySelectorAll(".toggle-unread");
+let removeBook = document.querySelectorAll(".remove-book");
 
 // Event Listeners
 addBook.addEventListener("click", formActive);
@@ -41,18 +41,30 @@ filterRead.addEventListener("click", filterByRead);
 filterUnread.addEventListener("click", filterByUnread);
 restoreDefaultsButton.addEventListener("click", restoreDefaults);
 
-for (let i = 0; i < toggleRead.length; i++) {
-    toggleRead[i].addEventListener("click", toggleReadClass);
-}
+// HTML Collection Event Listeners
+// let toggleRead = document.querySelectorAll(".toggle-read"), i;
+// toggleRead.forEach((book) => {
+//     book.addEventListener("click", () => {
+//         console.log("Read Worked!");
+//     });
+// });
 
-for (let i = 0; i < toggleUnread.length; i++) {
-    toggleUnread[i].addEventListener("click", toggleUnreadClass);
-}
+// let toggleUnread = document.querySelectorAll(".toggle-unread"), i;
+// toggleUnread.forEach((book) => {
+//     book.addEventListener("click", () => { 
+//         console.log("Unead Worked!");
+//     });
+// });
 
-for (let i = 0; i < removeBook.length; i++) {
-    removeBook[i].addEventListener("click", removeThisBook);
-}
+// let removeBook = document.querySelectorAll(".remove-book"), i;
+// removeBook.forEach((book) => {
+//     book.addEventListener("click", () => {
+//         console.log("Remove Worked!");
+//     });
+// });
 
+
+document.addEventListener("DOMContentLoaded", restoreDefaults);
 
 // Array to hold all Book Objects.
 let myLibrary = [];
@@ -145,11 +157,6 @@ function submitNewBook() {
         newBookForm.classList.toggle("show");
         addBook.classList.toggle("green-box")
         addConfirmation.classList.add("show-confirmation");
-
-        toggleRead = document.getElementsByClassName("toggle-read");
-        toggleUnread = document.getElementsByClassName("toggle-unread");
-        removeBook = document.getElementsByClassName("remove-book");
-
     }
 }
 
@@ -218,8 +225,74 @@ function addDOMBookItem() {
         let removeButtonText = document.createTextNode("Remove From List");
         removeButtonDOM.appendChild(removeButtonText);
         buttonDivDOM.appendChild(removeButtonDOM);
+
+        // Update DOM Buttons
+        toggleRead = document.querySelectorAll(".toggle-read");
+        toggleUnread = document.querySelectorAll(".toggle-unread");
+        removeBook = document.querySelectorAll(".remove-book");
+        bookItem = document.querySelectorAll(".book-item");
+        // DOM Button Looped NodeList Event Listeners
+        for (let i = 0; i < toggleRead.length; ++i) {
+            toggleRead[i].addEventListener("click", function() {
+                toggleRead[i].classList.add("read-active");
+                toggleUnread[i].classList.remove("unread-active");
+                console.log("Read Worked!");
+            });
+        }
+        for (let i = 0; i < toggleUnread.length; ++i) {
+            toggleUnread[i].addEventListener("click", function() {
+                toggleUnread[i].classList.add("unread-active");
+                toggleRead[i].classList.remove("read-active");
+                console.log("Unread Worked!");
+            });
+        }
+        for (let i = 0; i < removeBook.length; ++i) { 
+            removeBook[i].addEventListener("click", function() {
+                bookItem[i].classList.add("hide");
+            }); 
+        }
     }
 }
+
+// DOM Functions
+function formActive() {
+    addConfirmation.classList.remove("show-confirmation");
+    newBookForm.classList.toggle("show");
+    // confirmRemovalForm.classList.remove("show")
+    // removeAllBooks.classList.remove("red-box")
+    addBook.classList.toggle("green-box")
+    titleForm.value = "";
+    authorForm.value = "";
+    pagesForm.value = "";
+    imageURLForm.value = "";    
+    pagesIncomplete.classList.remove("show-pages-incomplete-box");
+    submitIncomplete.classList.remove("show-submit-incomplete-box");
+}
+
+function confirmRemovalToggle() {
+    addConfirmation.classList.remove("show-confirmation");
+    confirmRemovalForm.classList.toggle("show");
+    removeAllBooks.classList.toggle("red-box");
+}
+
+function toggleReadClass() {
+    // this.classList.toggle("read-active");
+    alert("test!");
+}
+function toggleUnreadClass() {
+    // this.classList.toggle("unread-active");
+    alert("test!");
+}
+
+
+
+
+
+// Learned: you need to update querySelectorAll when you have new content generated on the page.
+// You need to have your for loops in a function for when that new content is being generated also.
+
+
+
 
 // Filter visible DOM list by: all, read, unread.
 function filterShowAll() {
@@ -246,45 +319,4 @@ function filterByUnread() {
             this.classList.remove("hide");
         }
     }
-}
-
-
-// DOM Functions
-function formActive() {
-    addConfirmation.classList.remove("show-confirmation");
-    newBookForm.classList.toggle("show");
-    // confirmRemovalForm.classList.remove("show")
-    // removeAllBooks.classList.remove("red-box")
-    addBook.classList.toggle("green-box")
-    titleForm.value = "";
-    authorForm.value = "";
-    pagesForm.value = "";
-    imageURLForm.value = "";    
-    pagesIncomplete.classList.remove("show-pages-incomplete-box");
-    submitIncomplete.classList.remove("show-submit-incomplete-box");
-}
-
-function confirmRemovalToggle() {
-    addConfirmation.classList.remove("show-confirmation");
-    confirmRemovalForm.classList.toggle("show");
-    removeAllBooks.classList.toggle("red-box");
-}
-
-function toggleReadClass() {
-    this.classList.toggle("read-active");
-    console.log("test!");
-}
-function toggleUnreadClass() {
-    this.classList.toggle("unread-active");
-    console.log("test!");
-}
-
-function removeThisBook() {
-    let dataSetIndex = this.dataset.index;
-    for (i = 0; i < myLibrary.length; i++) {
-        if (i == dataSetIndex) {
-            booksContainer.childNodes.remove();
-        }
-    }
-    console.log("Here I am!");
 }
