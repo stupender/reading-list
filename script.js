@@ -63,7 +63,6 @@ restoreDefaultsButton.addEventListener("click", restoreDefaults);
 //     });
 // });
 
-
 document.addEventListener("DOMContentLoaded", restoreDefaults);
 
 // Array to hold all Book Objects.
@@ -81,27 +80,31 @@ function clearAll() {
 
 // Restore defaults.
 function restoreDefaults() {
-    let default1 = new Book("Silences So Deep", "John Luther Adams", 0, "https://images-na.ssl-images-amazon.com/images/I/71GYqNj8LNL.jpg", false);
-    myLibrary.push(default1);
-    addDOMBookItem(default1.title, default1.author, default1.pages, default1.image, default1.read); 
-    for (let i = 0; i < myLibrary.length; i++) {
-        booksContainer.childNodes.forEach(e => e.remove());
-    }
-    let default2 = new Book("Kafka on the Shore", "Haruki Murakami", 0, "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1429638085l/4929.jpg", false);
-    myLibrary.push(default2);
-    addDOMBookItem(default2.title, default2.author, default2.pages, default2.image, default2.read); 
-    for (let i = 0; i < myLibrary.length; i++) {
-        booksContainer.childNodes.forEach(e => e.remove());
-    }
-    let default3 = new Book("The Overstory", "Richard Powers", 0, "https://images-na.ssl-images-amazon.com/images/I/91o8IJKS8PL.jpg", false);
-    myLibrary.push(default3);
-    addDOMBookItem(default3.title, default3.author, default3.pages, default3.image, default3.read); 
-    for (let i = 0; i < myLibrary.length; i++) {
-        booksContainer.childNodes.forEach(e => e.remove());
-    }
-    let default4 = new Book("Why We Sleep: Unlocking the Power of Sleep and Dreams", "Matthew Walker", 0, "https://images-na.ssl-images-amazon.com/images/I/8174kfNgcwL.jpg", false);
-    myLibrary.push(default4);
-    addDOMBookItem(default4.title, default4.author, default4.pages, default4.image, default4.read); 
+    // if (myLibrary[0].title == "Silences So Deep" && myLibrary[1].title == "Kafka on the Shore" && myLibrary[2].title == "The Overstory" && myLibrary[3].title == "Why We Sleep: Unlocking the Power of Sleep and Dreams") {
+    //     return;
+    // } else {
+        let default1 = new Book("Silences So Deep", "John Luther Adams", 0, "https://images-na.ssl-images-amazon.com/images/I/71GYqNj8LNL.jpg", false);
+        myLibrary.push(default1);
+        addDOMBookItem(default1.title, default1.author, default1.pages, default1.image, default1.read); 
+        for (let i = 0; i < myLibrary.length; i++) {
+            booksContainer.childNodes.forEach(e => e.remove());
+        }
+        let default2 = new Book("Kafka on the Shore", "Haruki Murakami", 0, "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1429638085l/4929.jpg", false);
+        myLibrary.push(default2);
+        addDOMBookItem(default2.title, default2.author, default2.pages, default2.image, default2.read); 
+        for (let i = 0; i < myLibrary.length; i++) {
+            booksContainer.childNodes.forEach(e => e.remove());
+        }
+        let default3 = new Book("The Overstory", "Richard Powers", 0, "https://images-na.ssl-images-amazon.com/images/I/91o8IJKS8PL.jpg", false);
+        myLibrary.push(default3);
+        addDOMBookItem(default3.title, default3.author, default3.pages, default3.image, default3.read); 
+        for (let i = 0; i < myLibrary.length; i++) {
+            booksContainer.childNodes.forEach(e => e.remove());
+        }
+        let default4 = new Book("Why We Sleep: Unlocking the Power of Sleep and Dreams", "Matthew Walker", 0, "https://images-na.ssl-images-amazon.com/images/I/8174kfNgcwL.jpg", false);
+        myLibrary.push(default4);
+        addDOMBookItem(default4.title, default4.author, default4.pages, default4.image, default4.read);     
+    // }
 }
 
 // Object Constructor using ES6 Class Constructor.
@@ -116,12 +119,6 @@ class Book {
     removeBook () {
         this.remove();
     }
-}
-
-// Push binding with new book information to myLibrary.
-function addBookToLibrary(title, author, pages, image, read) {
-    let newBook = new Book(title, author, pages, image, read);
-    myLibrary.push(newBook);
 }
 
 // Takes text from the form, creates a new Book object, and adds it to myLibrary.
@@ -144,7 +141,7 @@ function submitNewBook() {
         for (let i = 0; i < myLibrary.length; i++) {
             booksContainer.childNodes.forEach(e => e.remove());
         }
-        addDOMBookItem(title, author, pages, image, read); 
+        addDOMBookItem(); 
 
         // CLEARS FORM FOR NEXT USE
         titleForm.value = "";
@@ -160,9 +157,15 @@ function submitNewBook() {
     }
 }
 
+// Push binding with new book information to myLibrary.
+function addBookToLibrary(title, author, pages, image, read) {
+    let newBook = new Book(title, author, pages, image, read);
+    myLibrary.push(newBook);
+}
+
+// This loops over the entire myLibrary - make sure to clear the DOM before running.
 function addDOMBookItem() {
     for (let i = 0; i < myLibrary.length; i++) {
-    // for (let i = myLibrary.length - 1; i < myLibrary.length; i++) {
         // BOOK CONTAINER
         let bookDivDOM = document.createElement("div");
         bookDivDOM.setAttribute("data-index", i);
@@ -231,24 +234,28 @@ function addDOMBookItem() {
         toggleUnread = document.querySelectorAll(".toggle-unread");
         removeBook = document.querySelectorAll(".remove-book");
         bookItem = document.querySelectorAll(".book-item");
+        
         // DOM Button Looped NodeList Event Listeners
-        for (let i = 0; i < toggleRead.length; ++i) {
+        for (let i = 0; i < toggleRead.length; i++) {
             toggleRead[i].addEventListener("click", function() {
                 toggleRead[i].classList.add("read-active");
                 toggleUnread[i].classList.remove("unread-active");
                 console.log("Read Worked!");
             });
         }
-        for (let i = 0; i < toggleUnread.length; ++i) {
+        for (let i = 0; i < toggleUnread.length; i++) {
             toggleUnread[i].addEventListener("click", function() {
                 toggleUnread[i].classList.add("unread-active");
                 toggleRead[i].classList.remove("read-active");
                 console.log("Unread Worked!");
             });
         }
-        for (let i = 0; i < removeBook.length; ++i) { 
+        for (let i = removeBook.length - 1; i >= 0; --i) { 
             removeBook[i].addEventListener("click", function() {
-                bookItem[i].classList.add("hide");
+                myLibrary.splice(i, 1); // Why doesn't splice work properly!?!?!?
+                bookItem[i].remove();
+                return;
+                // addDOMBookItem();
             }); 
         }
     }
@@ -258,8 +265,6 @@ function addDOMBookItem() {
 function formActive() {
     addConfirmation.classList.remove("show-confirmation");
     newBookForm.classList.toggle("show");
-    // confirmRemovalForm.classList.remove("show")
-    // removeAllBooks.classList.remove("red-box")
     addBook.classList.toggle("green-box")
     titleForm.value = "";
     authorForm.value = "";
@@ -290,6 +295,9 @@ function toggleUnreadClass() {
 
 // Learned: you need to update querySelectorAll when you have new content generated on the page.
 // You need to have your for loops in a function for when that new content is being generated also.
+// Could add a for loop that prevents duplicates from being added.
+
+
 
 
 
@@ -304,9 +312,9 @@ function filterShowAll() {
 function filterByRead() {
     for (i = 0; i < myLibrary.length; i++) {
         if (myLibrary[i].read == false) {
-            this.classList.add("hide");
+            myLibrary[i].classList.add("hide");
         } else {
-            this.classList.remove("hide");
+            myLibrary[i].classList.remove("hide");
         }
     }
 }
@@ -314,9 +322,9 @@ function filterByRead() {
 function filterByUnread() {
     for (i = 0; i < myLibrary.length; i++) {
         if (myLibrary[i].read == true) {
-            this.classList.add("hide");
+            myLibrary[i].classList.add("hide");
         } else {
-            this.classList.remove("hide");
+            myLibrary[i].classList.remove("hide");
         }
     }
 }
